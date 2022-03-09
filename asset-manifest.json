@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/spelling-bee/static/css/main.c5c756ea.chunk.css",
+    "main.css": "/spelling-bee/static/css/main.476f28ed.chunk.css",
     "main.js": "/spelling-bee/static/js/main.c80988b8.chunk.js",
     "main.js.map": "/spelling-bee/static/js/main.c80988b8.chunk.js.map",
     "runtime-main.js": "/spelling-bee/static/js/runtime-main.c6f157a2.js",
@@ -8,13 +8,13 @@
     "static/js/2.ce416f57.chunk.js": "/spelling-bee/static/js/2.ce416f57.chunk.js",
     "static/js/2.ce416f57.chunk.js.map": "/spelling-bee/static/js/2.ce416f57.chunk.js.map",
     "index.html": "/spelling-bee/index.html",
-    "static/css/main.c5c756ea.chunk.css.map": "/spelling-bee/static/css/main.c5c756ea.chunk.css.map",
+    "static/css/main.476f28ed.chunk.css.map": "/spelling-bee/static/css/main.476f28ed.chunk.css.map",
     "static/js/2.ce416f57.chunk.js.LICENSE.txt": "/spelling-bee/static/js/2.ce416f57.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c6f157a2.js",
     "static/js/2.ce416f57.chunk.js",
-    "static/css/main.c5c756ea.chunk.css",
+    "static/css/main.476f28ed.chunk.css",
     "static/js/main.c80988b8.chunk.js"
   ]
 }
