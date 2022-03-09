@@ -38,7 +38,7 @@ const Board = () => {
               key={`${inputtedLetter}-${index}`}
               className={cx("Board-inputLetter", {
                 "Board-inputLetter--invalid": !letterOptions.includes(
-                  inputtedLetter
+                  inputtedLetter.toLowerCase()
                 )
               })}
             >
