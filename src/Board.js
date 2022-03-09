@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./Board.scss";
 import Letter from "./Letter";
 import Button from "./Button";
@@ -24,26 +24,39 @@ const Board = () => {
     setLetterOptions(tempLetterOptions);
   }, []);
 
-  const deleteLetter = () => setInput(input.slice(0, -1));
+  const deleteLetter = useCallback(() => {
+    setInput((input) => input.slice(0, -1));
+  }, []);
 
-  const shuffleLetters = () =>
-    setLetterOptions([
-      letterOptions[0],
-      ...shuffleArray(letterOptions.slice(1))
-    ]);
+  const shuffleLetters = useCallback(
+    () =>
+      setLetterOptions((letterOptions) => [
+        letterOptions[0],
+        ...shuffleArray(letterOptions.slice(1))
+      ]),
+    []
+  );
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Backspace") {
-      deleteLetter();
-    } else if (e.key === " ") {
-      shuffleLetters();
-    } else if (String.fromCharCode(e.keyCode).match(/([A-Z]|[a-z])/g)) {
-      setInput(`${input}${e.key}`);
-    }
-  };
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Backspace") {
+        deleteLetter();
+      } else if (e.key === " ") {
+        shuffleLetters();
+      } else if (String.fromCharCode(e.keyCode).match(/([A-Z]|[a-z])/g)) {
+        setInput((input) => `${input}${e.key}`);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return function cleanup() {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [deleteLetter, shuffleLetters]);
 
   return (
-    <div className="Board" onKeyDown={handleKeyDown} tabIndex="-1">
+    <div className="Board">
       <InputtedLetters input={input} letterOptions={letterOptions} />
       <div className="Board-cells">
         {letterOptions.map((letter, index) => (
