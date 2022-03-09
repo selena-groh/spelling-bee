@@ -1,0 +1,15 @@
+.WordList {
+  &-wordCount {
+    margin-bottom: 16px;
+  }
+  & ul {
+    list-style: none;
+  }
+  &-word {
+    text-transform: capitalize;
+    border-bottom: 1px solid #dcdcdc;
+    padding: 4px 0px;
+    margin-bottom: 8px;
+    max-width: 25%;
+  }
+}

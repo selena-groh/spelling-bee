@@ -1,4 +1,4 @@
-.Board {
+.Game {
   margin: 16px auto;
   max-width: 760px;
   &:focus {
@@ -8,6 +8,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 500px;
+    margin: auto;
   }
   &-actions {
     margin: 32px 0;

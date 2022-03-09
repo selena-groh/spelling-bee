@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
-import "./Board.scss";
+import "./Game.scss";
 import Letter from "./Letter";
 import Button from "./Button";
 import InputtedLetters from "./InputtedLetters";
 import { shuffleArray, generateRandomCharacter } from "./utils";
+import WordList from "./WordList";
 
 const NUM_LETTERS = 7;
 
-const Board = () => {
+const Game = () => {
   const [currentInput, setCurrentInput] = useState("");
   const [words, setWords] = useState([]);
   const [letterOptions, setLetterOptions] = useState([]);
@@ -43,11 +44,12 @@ const Board = () => {
       letterOptions.includes(inputtedLetter.toLowerCase())
     );
     const isWordLongEnough = currentInput.length > 3;
-    if (areLettersValid && isWordLongEnough) {
+    const isUnique = !words.includes(currentInput);
+    if (areLettersValid && isWordLongEnough && isUnique) {
       setWords((words) => [...words, currentInput]);
       setCurrentInput("");
     }
-  }, [currentInput, letterOptions]);
+  }, [currentInput, letterOptions, words]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -70,9 +72,9 @@ const Board = () => {
   }, [deleteLetter, shuffleLetters, submitWord]);
 
   return (
-    <div className="Board">
+    <div className="Game">
       <InputtedLetters input={currentInput} letterOptions={letterOptions} />
-      <div className="Board-cells">
+      <div className="Game-cells">
         {letterOptions.map((letter, index) => (
           <Letter
             key={`${letter}-${index}`}
@@ -82,23 +84,15 @@ const Board = () => {
           />
         ))}
       </div>
-      <div className="Board-actions">
+      <div className="Game-actions">
         <Button onClick={shuffleLetters}>Shuffle</Button>
         <Button onClick={deleteLetter}>Delete</Button>
         <Button onClick={() => setCurrentInput("")}>Clear</Button>
         <Button onClick={submitWord}>Enter</Button>
       </div>
-      <p>
-        You have found {words.length} words. (But no guarantees they're real
-        words -- yet!)
-      </p>
-      <ul>
-        {words.map((word) => (
-          <li key={word}>{word}</li>
-        ))}
-      </ul>
+      <WordList words={words} />
     </div>
   );
 };
 
-export default Board;
+export default Game;
