@@ -33,8 +33,13 @@
       animation: 1000ms blink step-end infinite;
     }
   }
-  &-inputLetter--invalid {
-    color: #dcdcdc;
+  &-inputLetter {
+    &--invalid {
+      color: #dcdcdc;
+    }
+    &--required {
+      color: #f7da21;
+    }
   }
   &-cells {
     display: flex;

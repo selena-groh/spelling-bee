@@ -1,7 +1,7 @@
 import "./App.scss";
 import Board from "./Board";
 
-export default function App() {
+function App() {
   return (
     <div className="App">
       <h1 className="App-title">Spelling Bee</h1>
@@ -10,3 +10,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;

@@ -1,0 +1,129 @@
+$hexColor--notRequiredIdle: #e6e6e6;
+$hexColor--notRequiredHover: #d9d9d9;
+$hexColor--notRequiredActive: #c5c5c5;
+
+$hexColor--requiredIdle: #f7da21;
+$hexColor--requiredHover: #f6d609;
+$hexColor--requiredActive: #f6d609;
+
+$hexColor--idle: var(--hexColor-idle);
+$hexColor--hover: var(--hexColor-hover);
+$hexColor--active: var(--hexColor-active);
+
+$hexX: 30px;
+$hexY: 52px;
+
+.Letter {
+  position: relative;
+  margin: 2px calc(#{$hexX} + 2px);
+  cursor: pointer;
+  transition: transform 100ms;
+  &-hex {
+    --hexColor-idle: #{$hexColor--notRequiredIdle};
+    --hexColor-hover: #{$hexColor--notRequiredHover};
+    --hexColor-active: #{$hexColor--notRequiredActive};
+    &--isRequired {
+      --hexColor-idle: #{$hexColor--requiredIdle};
+      --hexColor-hover: #{$hexColor--requiredHover};
+      --hexColor-active: #{$hexColor--requiredActive};
+    }
+    &:before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-right: $hexX solid $hexColor--idle;
+      border-top: $hexY solid transparent;
+      border-bottom: $hexY solid transparent;
+      position: absolute;
+      left: calc(#{$hexX} * -1);
+      &:hover {
+        border-right: $hexX solid $hexColor--hover;
+      }
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(#{$hexX} * 2);
+    height: calc(#{$hexY} * 2);
+    background-color: $hexColor--idle;
+    position: relative;
+    &:hover {
+      background-color: $hexColor--hover;
+    }
+    &:after {
+      content: "";
+      width: 0;
+      position: absolute;
+      right: calc(#{$hexX} * -1);
+      border-left: $hexX solid $hexColor--idle;
+      border-top: $hexY solid transparent;
+      border-bottom: $hexY solid transparent;
+      &:hover {
+        border-left: $hexX solid $hexColor--hover;
+      }
+    }
+  }
+  &-hex {
+    &:before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-right: $hexX solid $hexColor--idle;
+      border-top: $hexY solid transparent;
+      border-bottom: $hexY solid transparent;
+      position: absolute;
+      left: calc(#{$hexX} * -1);
+      &:hover {
+        border-right: $hexX solid $hexColor--hover;
+      }
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(#{$hexX} * 2);
+    height: calc(#{$hexY} * 2);
+    background-color: $hexColor--idle;
+    position: relative;
+    &:hover {
+      background-color: $hexColor--hover;
+    }
+    &:after {
+      content: "";
+      width: 0;
+      position: absolute;
+      right: calc(#{$hexX} * -1);
+      border-left: $hexX solid $hexColor--idle;
+      border-top: $hexY solid transparent;
+      border-bottom: $hexY solid transparent;
+      &:hover {
+        border-left: $hexX solid $hexColor--hover;
+      }
+    }
+  }
+  &:hover &-hex {
+    &:before {
+        border-right: $hexX solid $hexColor--hover;
+    }
+    background-color: $hexColor--hover;
+    &:after {
+      border-left: $hexX solid $hexColor--hover;
+    }
+  }
+  &:active {
+    transform: scale(0.9);
+    &-hex {
+      &:before {
+          border-right: $hexX solid $hexColor--active;
+      }
+      background-color: $hexColor--active;
+      &:after {
+        border-left: $hexX solid $hexColor--active;
+      }
+    }
+  }
+  &-letter {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2em;
+  }
+}
