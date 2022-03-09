@@ -8,7 +8,8 @@ import { shuffleArray, generateRandomCharacter } from "./utils";
 const NUM_LETTERS = 7;
 
 const Board = () => {
-  const [input, setInput] = useState("");
+  const [currentInput, setCurrentInput] = useState("");
+  const [words, setWords] = useState([]);
   const [letterOptions, setLetterOptions] = useState([]);
 
   // Runs once on initial page load to determine the letter options
@@ -25,7 +26,7 @@ const Board = () => {
   }, []);
 
   const deleteLetter = useCallback(() => {
-    setInput((input) => input.slice(0, -1));
+    setCurrentInput((currentInput) => currentInput.slice(0, -1));
   }, []);
 
   const shuffleLetters = useCallback(
@@ -37,14 +38,27 @@ const Board = () => {
     []
   );
 
+  const submitWord = useCallback(() => {
+    const areLettersValid = [...currentInput].every((inputtedLetter) =>
+      letterOptions.includes(inputtedLetter.toLowerCase())
+    );
+    const isWordLongEnough = currentInput.length > 3;
+    if (areLettersValid && isWordLongEnough) {
+      setWords((words) => [...words, currentInput]);
+      setCurrentInput("");
+    }
+  }, [currentInput, letterOptions]);
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Backspace") {
         deleteLetter();
       } else if (e.key === " ") {
         shuffleLetters();
+      } else if (e.key === "Enter") {
+        submitWord();
       } else if (String.fromCharCode(e.keyCode).match(/([A-Z]|[a-z])/g)) {
-        setInput((input) => `${input}${e.key}`);
+        setCurrentInput((currentInput) => `${currentInput}${e.key}`);
       }
     };
 
@@ -53,26 +67,36 @@ const Board = () => {
     return function cleanup() {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [deleteLetter, shuffleLetters]);
+  }, [deleteLetter, shuffleLetters, submitWord]);
 
   return (
     <div className="Board">
-      <InputtedLetters input={input} letterOptions={letterOptions} />
+      <InputtedLetters input={currentInput} letterOptions={letterOptions} />
       <div className="Board-cells">
         {letterOptions.map((letter, index) => (
           <Letter
             key={`${letter}-${index}`}
             isRequired={index === 0}
             letter={letter}
-            onClick={() => setInput(`${input}${letter}`)}
+            onClick={() => setCurrentInput(`${currentInput}${letter}`)}
           />
         ))}
       </div>
       <div className="Board-actions">
         <Button onClick={shuffleLetters}>Shuffle</Button>
         <Button onClick={deleteLetter}>Delete</Button>
-        <Button onClick={() => setInput("")}>Clear</Button>
+        <Button onClick={() => setCurrentInput("")}>Clear</Button>
+        <Button onClick={submitWord}>Enter</Button>
       </div>
+      <p>
+        You have found {words.length} words. (But no guarantees they're real
+        words -- yet!)
+      </p>
+      <ul>
+        {words.map((word) => (
+          <li key={word}>{word}</li>
+        ))}
+      </ul>
     </div>
   );
 };
