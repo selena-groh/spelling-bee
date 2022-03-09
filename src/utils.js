@@ -9,11 +9,11 @@ export const shuffleArray = (array) => {
 };
 
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
-const VOWELS = "aeiouy";
+const VOWELS = "aeiou";
 
 // Note: could be adjusted in the future. Currently limited to common consonants to make it easier to solve.
 const CONSONANTS = "bcdfghjklmnpqrstvwxz";
-const COMMON_CONSONANTS = "bcdfghklmnprstvwz";
+const COMMON_CONSONANTS = "bcdfghklmnprstvwzy";
 
 const generateRandomFromArray = (array) =>
   array[Math.floor(Math.random() * array.length)];
