@@ -9,6 +9,28 @@ export const shuffleArray = (array) => {
 };
 
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+const VOWELS = "aeiouy";
 
-export const generateRandomCharacter = () =>
-  ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
+// Note: could be adjusted in the future. Currently limited to common consonants to make it easier to solve.
+const CONSONANTS = "bcdfghjklmnpqrstvwxz";
+const COMMON_CONSONANTS = "bcdfghklmnprstvwz";
+
+const generateRandomFromArray = (array) =>
+  array[Math.floor(Math.random() * array.length)];
+
+export const generateRandomLetter = () => generateRandomFromArray(ALPHABET);
+export const generateRandomVowel = () => generateRandomFromArray(VOWELS);
+export const generateRandomCommonConsonant = () =>
+  generateRandomFromArray(COMMON_CONSONANTS);
+
+export const generateNUnique = (generator, n) => {
+  const generatedList = [];
+  for (var i = 0; i < n; i++) {
+    let generated = "";
+    do {
+      generated = generator();
+    } while (generatedList.includes(generated));
+    generatedList.push(generated);
+  }
+  return generatedList;
+};

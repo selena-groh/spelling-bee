@@ -3,10 +3,17 @@ import "./Game.scss";
 import Letter from "./Letter";
 import Button from "./Button";
 import InputtedLetters from "./InputtedLetters";
-import { shuffleArray, generateRandomCharacter } from "./utils";
+import {
+  shuffleArray,
+  generateNUnique,
+  generateRandomVowel,
+  generateRandomCommonConsonant
+} from "./utils";
 import WordList from "./WordList";
 
-const NUM_LETTERS = 7;
+const NUM_VOWELS = 3;
+const NUM_CONSONANTS = 4;
+const REQUIRED_LETTER_INDEX = 0;
 
 const Game = () => {
   const [currentInput, setCurrentInput] = useState("");
@@ -15,15 +22,12 @@ const Game = () => {
 
   // Runs once on initial page load to determine the letter options
   useEffect(() => {
-    const tempLetterOptions = [];
-    for (var i = 1; i <= NUM_LETTERS; i++) {
-      let randomLetter = "";
-      do {
-        randomLetter = generateRandomCharacter();
-      } while (tempLetterOptions.includes(randomLetter));
-      tempLetterOptions.push(randomLetter);
-    }
-    setLetterOptions(tempLetterOptions);
+    const uniqueVowels = generateNUnique(generateRandomVowel, NUM_VOWELS);
+    const uniqueConsonants = generateNUnique(
+      generateRandomCommonConsonant,
+      NUM_CONSONANTS
+    );
+    setLetterOptions(shuffleArray([...uniqueVowels, ...uniqueConsonants]));
   }, []);
 
   const deleteLetter = useCallback(() => {
@@ -40,12 +44,20 @@ const Game = () => {
   );
 
   const submitWord = useCallback(() => {
+    const containsRequiredLetter = currentInput.includes(
+      letterOptions[REQUIRED_LETTER_INDEX]
+    );
     const areLettersValid = [...currentInput].every((inputtedLetter) =>
       letterOptions.includes(inputtedLetter.toLowerCase())
     );
     const isWordLongEnough = currentInput.length > 3;
     const isUnique = !words.includes(currentInput);
-    if (areLettersValid && isWordLongEnough && isUnique) {
+    if (
+      containsRequiredLetter &&
+      areLettersValid &&
+      isWordLongEnough &&
+      isUnique
+    ) {
       setWords((words) => [...words, currentInput]);
       setCurrentInput("");
     }
@@ -78,7 +90,7 @@ const Game = () => {
         {letterOptions.map((letter, index) => (
           <Letter
             key={`${letter}-${index}`}
-            isRequired={index === 0}
+            isRequired={index === REQUIRED_LETTER_INDEX}
             letter={letter}
             onClick={() => setCurrentInput(`${currentInput}${letter}`)}
           />
