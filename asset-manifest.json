@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/spelling-bee/static/css/main.859fd358.chunk.css",
-    "main.js": "/spelling-bee/static/js/main.cd1f0d78.chunk.js",
-    "main.js.map": "/spelling-bee/static/js/main.cd1f0d78.chunk.js.map",
+    "main.css": "/spelling-bee/static/css/main.0fef40a5.chunk.css",
+    "main.js": "/spelling-bee/static/js/main.b6c22e36.chunk.js",
+    "main.js.map": "/spelling-bee/static/js/main.b6c22e36.chunk.js.map",
     "runtime-main.js": "/spelling-bee/static/js/runtime-main.c6f157a2.js",
     "runtime-main.js.map": "/spelling-bee/static/js/runtime-main.c6f157a2.js.map",
-    "static/js/2.06d55ae1.chunk.js": "/spelling-bee/static/js/2.06d55ae1.chunk.js",
-    "static/js/2.06d55ae1.chunk.js.map": "/spelling-bee/static/js/2.06d55ae1.chunk.js.map",
+    "static/js/2.ce416f57.chunk.js": "/spelling-bee/static/js/2.ce416f57.chunk.js",
+    "static/js/2.ce416f57.chunk.js.map": "/spelling-bee/static/js/2.ce416f57.chunk.js.map",
     "index.html": "/spelling-bee/index.html",
-    "static/css/main.859fd358.chunk.css.map": "/spelling-bee/static/css/main.859fd358.chunk.css.map",
-    "static/js/2.06d55ae1.chunk.js.LICENSE.txt": "/spelling-bee/static/js/2.06d55ae1.chunk.js.LICENSE.txt"
+    "static/css/main.0fef40a5.chunk.css.map": "/spelling-bee/static/css/main.0fef40a5.chunk.css.map",
+    "static/js/2.ce416f57.chunk.js.LICENSE.txt": "/spelling-bee/static/js/2.ce416f57.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c6f157a2.js",
-    "static/js/2.06d55ae1.chunk.js",
-    "static/css/main.859fd358.chunk.css",
-    "static/js/main.cd1f0d78.chunk.js"
+    "static/js/2.ce416f57.chunk.js",
+    "static/css/main.0fef40a5.chunk.css",
+    "static/js/main.b6c22e36.chunk.js"
   ]
 }
