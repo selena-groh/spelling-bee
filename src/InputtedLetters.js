@@ -9,7 +9,7 @@ const InputtedLetters = ({ input, letterOptions }) => (
           key={`${inputtedLetter}-${index}`}
           className={cx("InputtedLetters-inputLetter", {
             "InputtedLetters-inputLetter--invalid": !letterOptions.includes(
-              inputtedLetter.toLowerCase()
+              inputtedLetter
             ),
             "InputtedLetters-inputLetter--required":
               inputtedLetter === letterOptions[0]

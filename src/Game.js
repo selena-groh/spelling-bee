@@ -48,7 +48,7 @@ const Game = () => {
       letterOptions[REQUIRED_LETTER_INDEX]
     );
     const areLettersValid = [...currentInput].every((inputtedLetter) =>
-      letterOptions.includes(inputtedLetter.toLowerCase())
+      letterOptions.includes(inputtedLetter)
     );
     const isWordLongEnough = currentInput.length > 3;
     const isUnique = !words.includes(currentInput);
@@ -72,7 +72,9 @@ const Game = () => {
       } else if (e.key === "Enter") {
         submitWord();
       } else if (String.fromCharCode(e.keyCode).match(/([A-Z]|[a-z])/g)) {
-        setCurrentInput((currentInput) => `${currentInput}${e.key}`);
+        setCurrentInput(
+          (currentInput) => `${currentInput}${e.key.toLowerCase()}`
+        );
       }
     };
 
@@ -92,7 +94,9 @@ const Game = () => {
             key={`${letter}-${index}`}
             isRequired={index === REQUIRED_LETTER_INDEX}
             letter={letter}
-            onClick={() => setCurrentInput(`${currentInput}${letter}`)}
+            onClick={() =>
+              setCurrentInput(`${currentInput}${letter.toLowerCase()}`)
+            }
           />
         ))}
       </div>
